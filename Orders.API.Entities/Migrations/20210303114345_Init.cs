@@ -17,7 +17,8 @@ namespace Orders.API.Entities.Migrations
                     UpdatedDate = table.Column<DateTimeOffset>(nullable: false),
                     OrderDate = table.Column<DateTime>(nullable: false),
                     Status = table.Column<int>(nullable: false),
-                    OrderNumber = table.Column<string>(nullable: true)
+                    OrderNumber = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {

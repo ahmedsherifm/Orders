@@ -11,7 +11,7 @@ namespace Orders.API.Services.Interfaces
     {
         Task<List<OrderModel>> GetAllOrders();
         Task<OrderModel> GetOrderById(Guid id);
-        Task<OrderModel> GetOrderByNumber(string number);
+        Task<OrderModel> GetOrderByNumber(int number);
         Task AddNewOrder(OrderModel order);
     }
 }

@@ -10,6 +10,6 @@ namespace Orders.API.Models
         public IEnumerable<LocationModel> Locations { get; set; }
         public DateTime OrderDate { get; set; }
         public OrderStatus Status { get; set; }
-        public string OrderNumber { get; set; }
+        public int OrderNumber { get; set; }
     }
 }

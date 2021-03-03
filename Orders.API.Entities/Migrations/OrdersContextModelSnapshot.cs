@@ -103,8 +103,10 @@ namespace Orders.API.Entities.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("OrderNumber")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("OrderNumber")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Status")
                         .HasColumnType("int");

@@ -10,7 +10,7 @@ using Orders.API.Entities.Models;
 namespace Orders.API.Entities.Migrations
 {
     [DbContext(typeof(OrdersContext))]
-    [Migration("20210302151647_Init")]
+    [Migration("20210303114345_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,8 +105,10 @@ namespace Orders.API.Entities.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("OrderNumber")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("OrderNumber")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Status")
                         .HasColumnType("int");

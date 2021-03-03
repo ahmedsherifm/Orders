@@ -26,7 +26,7 @@ namespace Orders.API.Services.Services
             return await GetById<Order, OrderModel>(id, "RecordSubject,Locations");
         }
 
-        public async Task<OrderModel> GetOrderByNumber(string number)
+        public async Task<OrderModel> GetOrderByNumber(int number)
         {
             var order = await GenericRepository.GetFirstAsync<Order>(o => o.OrderNumber == number,
                 "RecordSubject,Locations");
