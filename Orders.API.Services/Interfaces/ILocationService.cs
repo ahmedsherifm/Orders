@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Orders.API.Models;
+using Orders.API.Entities.Models;
 
 namespace Orders.API.Services.Interfaces
 {
     public interface ILocationService
     {
-        Task<List<LocationModel>> GetLocationsByOrderId(Guid orderId);
-        Task AddLocations(List<LocationModel> locationModels);
+        Task<List<Location>> GetLocationsByOrderId(Guid orderId);
+        Task AddLocations(IEnumerable<Location> locationModels);
     }
 }

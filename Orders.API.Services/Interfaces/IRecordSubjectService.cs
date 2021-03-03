@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Orders.API.Models;
+using Orders.API.Entities.Models;
 
 namespace Orders.API.Services.Interfaces
 {
     public interface IRecordSubjectService
     {
-        Task<RecordSubjectModel> GetRecordSubjectById(Guid id);
-        Task AddRecordSubject(RecordSubjectModel recordSubject);
+        Task<RecordSubject> GetRecordSubjectById(Guid id);
+        Task AddRecordSubject(RecordSubject recordSubject);
     }
 }

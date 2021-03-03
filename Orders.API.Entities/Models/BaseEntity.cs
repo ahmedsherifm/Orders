@@ -10,5 +10,11 @@ namespace Orders.API.Entities.Models
         public bool Deleted { get; set; }
         public DateTimeOffset CreatedDate { get; set; }
         public DateTimeOffset UpdatedDate { get; set; }
+
+        public BaseEntity()
+        {
+            Id = Guid.NewGuid();
+            CreatedDate = UpdatedDate = DateTimeOffset.Now;
+        }
     }
 }

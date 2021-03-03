@@ -5,32 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using Orders.API.DAL.Interfaces;
 using Orders.API.Entities.Models;
-using Orders.API.Models;
 using Orders.API.Services.Interfaces;
-using Orders.API.Utilities.AutoMapper;
 
 namespace Orders.API.Services.Services
 {
     public class LocationService: BaseService, ILocationService
     {
-        public LocationService(IGenericRepository genericRepository, IMapperService mapperService) : base(genericRepository, mapperService)
+        public LocationService(IGenericRepository genericRepository) : base(genericRepository)
         {
         }
 
-        public LocationService(IMapperService mapperService) : base(mapperService)
-        {
-        }
 
-        public async Task<List<LocationModel>> GetLocationsByOrderId(Guid orderId)
+        public async Task<List<Location>> GetLocationsByOrderId(Guid orderId)
         {
-            var order = await GetById<Order, OrderModel>(orderId);
+            var order = await GetById<Order>(orderId);
             return order.Locations.ToList();
         }
 
-        public async Task AddLocations(List<LocationModel> locationModels)
+        public async Task AddLocations(IEnumerable<Location> locations)
         {
-            var locations = MapperService.Map<List<LocationModel>, List<Location>>(locationModels);
-            GenericRepository.AddRange(locations);
+            GenericRepository.AddRange(locations.ToList());
             await GenericRepository.SaveAsync();
         }
     }

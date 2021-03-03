@@ -4,37 +4,33 @@ using System.Text;
 using System.Threading.Tasks;
 using Orders.API.DAL.Interfaces;
 using Orders.API.Entities.Models;
-using Orders.API.Models;
 using Orders.API.Services.Interfaces;
-using Orders.API.Utilities.AutoMapper;
 
 namespace Orders.API.Services.Services
 {
     public class OrderService: BaseService, IOrderService
     {
-        public OrderService(IGenericRepository genericRepository, IMapperService mapperService) : base(genericRepository, mapperService)
+        public OrderService(IGenericRepository genericRepository) : base(genericRepository)
         {
         }
 
-        public async Task<List<OrderModel>> GetAllOrders()
+        public async Task<List<Order>> GetAllOrders()
         {
-            return await GetAll<Order, OrderModel>();
+            return await GetAll<Order>();
         }
 
-        public async Task<OrderModel> GetOrderById(Guid id)
+        public async Task<Order> GetOrderById(Guid id)
         {
-            return await GetById<Order, OrderModel>(id);
+            return await GetById<Order>(id);
         }
 
-        public async Task<OrderModel> GetOrderByNumber(string number)
+        public async Task<Order> GetOrderByNumber(string number)
         {
-            var order = await GenericRepository.GetFirstAsync<Order>(o => o.OrderNumber == number);
-            return MapperService.Map<Order, OrderModel>(order);
+            return await GenericRepository.GetFirstAsync<Order>(o => o.OrderNumber == number);
         }
 
-        public async Task AddNewOrder(OrderModel orderModel)
+        public async Task AddNewOrder(Order order)
         {
-            var order = MapperService.Map<OrderModel, Order>(orderModel);
             GenericRepository.Add(order);
             await GenericRepository.SaveAsync();
         }

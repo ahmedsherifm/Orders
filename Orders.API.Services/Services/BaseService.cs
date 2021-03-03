@@ -5,45 +5,34 @@ using System.Text;
 using System.Threading.Tasks;
 using Orders.API.DAL.Interfaces;
 using Orders.API.Entities.Models;
-using Orders.API.Utilities.AutoMapper;
 
 namespace Orders.API.Services.Services
 {
     public class BaseService
     {
-        protected IMapperService MapperService { get; }
         protected IGenericRepository GenericRepository { get; }
 
-        public BaseService(IGenericRepository genericRepository, IMapperService mapperService)
+        public BaseService(IGenericRepository genericRepository)
         {
             GenericRepository = genericRepository;
-            MapperService = mapperService;
         }
 
-        public BaseService(IMapperService mapperService)
-        {
-            MapperService = mapperService;
-        }
-
-        protected async Task<List<TModel>> GetAll<TEntity, TModel>(Expression<Func<TEntity, bool>> filter, string includeProperties = "")
+        protected async Task<List<TEntity>> GetAll<TEntity>(Expression<Func<TEntity, bool>> filter, string includeProperties = "")
             where TEntity : BaseEntity
         {
 
-            var list = await GenericRepository.GetListAsync(filter);
-            return MapperService.Map<List<TEntity>, List<TModel>>(list);
+            return await GenericRepository.GetListAsync(filter);
         }
 
-        protected async Task<List<TModel>> GetAll<TEntity, TModel>() where TEntity : BaseEntity
+        protected async Task<List<TEntity>> GetAll<TEntity>() where TEntity : BaseEntity
         {
 
-            var list = await GenericRepository.GetListAsync<TEntity>(t => !t.Deleted);
-            return MapperService.Map<List<TEntity>, List<TModel>>(list);
+            return await GenericRepository.GetListAsync<TEntity>(t => !t.Deleted);
         }
 
-        protected async Task<TModel> GetById<TEntity, TModel>(Guid id) where TEntity : BaseEntity
+        protected async Task<TEntity> GetById<TEntity>(Guid id) where TEntity : BaseEntity
         {
-            var entity = await GenericRepository.GetByIdAsync<TEntity>(id);
-            return MapperService.Map<TEntity, TModel>(entity);
+            return await GenericRepository.GetByIdAsync<TEntity>(id);
         }
     }
 }

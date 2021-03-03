@@ -10,8 +10,8 @@ namespace Orders.API.Entities.Models
     {
         public RecordSubject RecordSubject { get; set; }
         public IEnumerable<Location> Locations { get; set; }
-        public DateTime OrderDate { get; set; }
-        public OrderStatus Status { get; set; }
+        public DateTime OrderDate { get; set; } = DateTime.Now;
+        public OrderStatus Status { get; set; } = OrderStatus.InProgress;
         public string OrderNumber { get; set; }
     }
 }

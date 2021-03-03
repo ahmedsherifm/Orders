@@ -9,13 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.API.DAL", "..\Orders
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.API.Entities", "..\Orders.API.Entities\Orders.API.Entities.csproj", "{7E6249AC-5C0F-4FFF-BC4D-7D0BE28113B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.API.Services", "..\Orders.API.Services\Orders.API.Services.csproj", "{90042246-859E-4CF6-B1AF-FC29DE9AB51B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.API.Services", "..\Orders.API.Services\Orders.API.Services.csproj", "{90042246-859E-4CF6-B1AF-FC29DE9AB51B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.API.Utilities", "..\Orders.API.Utilities\Orders.API.Utilities.csproj", "{30A51B80-1590-4016-B290-C8E3304C23DF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.API.Models", "..\Orders.API.Models\Orders.API.Models.csproj", "{CAABCFD2-0279-4672-AFE3-7508DF8E0642}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.API.Core", "..\Orders.API.Core\Orders.API.Core.csproj", "{EC60B84E-D110-42C3-87EE-17A301B1DCBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.API.Core", "..\Orders.API.Core\Orders.API.Core.csproj", "{EC60B84E-D110-42C3-87EE-17A301B1DCBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,14 +35,6 @@ Global
 		{90042246-859E-4CF6-B1AF-FC29DE9AB51B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90042246-859E-4CF6-B1AF-FC29DE9AB51B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90042246-859E-4CF6-B1AF-FC29DE9AB51B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{30A51B80-1590-4016-B290-C8E3304C23DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30A51B80-1590-4016-B290-C8E3304C23DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{30A51B80-1590-4016-B290-C8E3304C23DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{30A51B80-1590-4016-B290-C8E3304C23DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CAABCFD2-0279-4672-AFE3-7508DF8E0642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CAABCFD2-0279-4672-AFE3-7508DF8E0642}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CAABCFD2-0279-4672-AFE3-7508DF8E0642}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CAABCFD2-0279-4672-AFE3-7508DF8E0642}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EC60B84E-D110-42C3-87EE-17A301B1DCBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EC60B84E-D110-42C3-87EE-17A301B1DCBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC60B84E-D110-42C3-87EE-17A301B1DCBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
