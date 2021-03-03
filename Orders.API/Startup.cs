@@ -46,6 +46,8 @@ namespace Orders.API
             services.AddAutoMapper(typeof(OrdersProfile));
             services.AddTransient<IGenericRepository, GenericRepository>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IRecordSubjectService, RecordSubjectService>();
+            services.AddTransient<ILocationService, LocationService>();
             services.AddTransient<IMapperService, MapperService>();
         }
 
