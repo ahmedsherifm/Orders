@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Orders.API.Entities.Models;
+using Orders.API.Models;
 
 namespace Orders.API.Services.Interfaces
 {
     public interface IRecordSubjectService
     {
-        Task<RecordSubject> GetRecordSubjectById(Guid id);
+        Task<RecordSubjectModel> GetRecordSubjectById(Guid id);
     }
 }

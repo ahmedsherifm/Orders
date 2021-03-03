@@ -17,10 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Orders.API.Core\Orders.API.Core.csproj" />
     <ProjectReference Include="..\Orders.API.DAL\Orders.API.DAL.csproj" />
     <ProjectReference Include="..\Orders.API.Entities\Orders.API.Entities.csproj" />
     <ProjectReference Include="..\Orders.API.Services\Orders.API.Services.csproj" />
+    <ProjectReference Include="..\Orders.API.Utilities\Orders.API.Utilities.csproj" />
   </ItemGroup>
 
 

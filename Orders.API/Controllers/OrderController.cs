@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Orders.API.Core;
-using Orders.API.Entities.Models;
+using Orders.API.Models;
 using Orders.API.Services.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -46,7 +44,7 @@ namespace Orders.API.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Order order)
+        public async Task<IActionResult> Post([FromBody]OrderModel order)
         {
             try
             {
