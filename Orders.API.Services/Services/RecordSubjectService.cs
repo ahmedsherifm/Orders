@@ -16,7 +16,7 @@ namespace Orders.API.Services.Services
 
         public async Task<RecordSubject> GetRecordSubjectById(Guid id)
         {
-            return await GetById<RecordSubject>(id);
+            return await GetById<RecordSubject>(id, "Order");
         }
 
         public async Task AddRecordSubject(RecordSubject recordSubject)

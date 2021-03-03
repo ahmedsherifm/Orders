@@ -10,44 +10,38 @@ using Orders.API.Services.Interfaces;
 
 namespace Orders.API.Controllers
 {
-    public class Test
-    {
-        public string Str { get; set; }
-        public DateTime Date { get; set; }
-        public RecordTypes RecordType { get; set; }
-        public RecordSubject RecordSubject { get; set; }
-    }
-
-
     [Route("api/[controller]")]
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;
 
-        private readonly ILocationService _locationService;
-
-        private readonly IRecordSubjectService _recordSubjectService;
-
-        public OrderController(IOrderService orderService, ILocationService locationService,
-            IRecordSubjectService recordSubjectService)
+        public OrderController(IOrderService orderService)
         {
             _orderService = orderService;
-            _locationService = locationService;
-            _recordSubjectService = recordSubjectService;
         }
 
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            var orders = await _orderService.GetAllOrders();
+            return Ok(orders);
         }
 
         // GET api/<controller>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{orderId}")]
+        public async Task<IActionResult> Get(Guid orderId)
         {
-            return "value";
+            try
+            {
+                var order = await _orderService.GetOrderById(orderId);
+                return Ok(order);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return NotFound();
+            }
         }
 
         // POST api/<controller>
@@ -56,10 +50,7 @@ namespace Orders.API.Controllers
         {
             try
             {
-                await _recordSubjectService.AddRecordSubject(order.RecordSubject);
-                await _locationService.AddLocations(order.Locations);
                 await _orderService.AddNewOrder(order);
-
                 return Ok();
             }
             catch (Exception e)
@@ -68,20 +59,5 @@ namespace Orders.API.Controllers
                 return StatusCode(500);
             }
         }
-
-        //// POST api/<controller>
-        //[HttpPost]
-        //public async Task<IActionResult> Post([FromBody]Test test)
-        //{
-        //    try
-        //    {
-        //        return Ok();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e);
-        //        return StatusCode(500);
-        //    }
-        //}
     }
 }

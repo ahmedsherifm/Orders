@@ -15,16 +15,15 @@ namespace Orders.API.Services.Services
         {
         }
 
-
         public async Task<List<Location>> GetLocationsByOrderId(Guid orderId)
         {
-            var order = await GetById<Order>(orderId);
+            var order = await GetById<Order>(orderId, "Locations");
             return order.Locations.ToList();
         }
 
-        public async Task AddLocations(IEnumerable<Location> locations)
+        public async Task AddLocation(Location location)
         {
-            GenericRepository.AddRange(locations.ToList());
+            GenericRepository.Add(location);
             await GenericRepository.SaveAsync();
         }
     }

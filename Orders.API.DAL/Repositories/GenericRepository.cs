@@ -18,24 +18,43 @@ namespace Orders.API.DAL.Repositories
         {
             _ordersContext = ordersContext;
         }
-        public async Task<TEntity> GetByIdAsync<TEntity>(Guid id) where TEntity : BaseEntity
+        
+        public IQueryable<TEntity> GetQueryAsQueryable<TEntity>() where TEntity : BaseEntity
         {
-            return await _ordersContext.Set<TEntity>().FirstOrDefaultAsync(m => m.Id == id);
+            return _ordersContext.Set<TEntity>().AsQueryable().AsTracking();
         }
 
-        public async Task<List<TEntity>> GetListAsync<TEntity>() where TEntity : BaseEntity
+        public IQueryable<TEntity> GetQueryAsQueryableWithInclude<TEntity>(string includeProperties) where TEntity : BaseEntity
         {
-            return await _ordersContext.Set<TEntity>().ToListAsync();
+            var query = GetQueryAsQueryable<TEntity>();
+            return includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
         }
 
-        public async Task<List<TEntity>> GetListAsync<TEntity>(Expression<Func<TEntity, bool>> filter) where TEntity : BaseEntity
+        public async Task<TEntity> GetByIdAsync<TEntity>(Guid id, string includeProperties) where TEntity : BaseEntity
         {
-            return await _ordersContext.Set<TEntity>().Where(filter).ToListAsync();
+            var query = GetQueryAsQueryableWithInclude<TEntity>(includeProperties);
+            return await query.FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public async Task<TEntity> GetFirstAsync<TEntity>(Expression<Func<TEntity, bool>> filter) where TEntity : BaseEntity
+        public async Task<List<TEntity>> GetListAsync<TEntity>(string includeProperties) where TEntity : BaseEntity
         {
-            return await _ordersContext.Set<TEntity>().FirstOrDefaultAsync(filter);
+            var query = GetQueryAsQueryableWithInclude<TEntity>(includeProperties);
+            return await query.ToListAsync();
+        }
+
+        public async Task<List<TEntity>> GetListAsync<TEntity>(Expression<Func<TEntity, bool>> filter,
+            string includeProperties) where TEntity : BaseEntity
+        {
+            var query = GetQueryAsQueryableWithInclude<TEntity>(includeProperties);
+            return await query.Where(filter).ToListAsync();
+        }
+
+        public async Task<TEntity> GetFirstAsync<TEntity>(Expression<Func<TEntity, bool>> filter,
+            string includeProperties) where TEntity : BaseEntity
+        {
+            var query = GetQueryAsQueryableWithInclude<TEntity>(includeProperties);
+            return await query.FirstOrDefaultAsync(filter);
         }
 
         public void Add<TEntity>(TEntity entity) where TEntity : BaseEntity

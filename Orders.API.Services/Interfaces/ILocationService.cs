@@ -9,6 +9,6 @@ namespace Orders.API.Services.Interfaces
     public interface ILocationService
     {
         Task<List<Location>> GetLocationsByOrderId(Guid orderId);
-        Task AddLocations(IEnumerable<Location> locationModels);
+        Task AddLocation(Location location);
     }
 }

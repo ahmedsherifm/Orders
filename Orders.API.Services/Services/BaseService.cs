@@ -21,18 +21,18 @@ namespace Orders.API.Services.Services
             where TEntity : BaseEntity
         {
 
-            return await GenericRepository.GetListAsync(filter);
+            return await GenericRepository.GetListAsync(filter, includeProperties);
         }
 
-        protected async Task<List<TEntity>> GetAll<TEntity>() where TEntity : BaseEntity
+        protected async Task<List<TEntity>> GetAll<TEntity>(string includeProperties = "") where TEntity : BaseEntity
         {
 
-            return await GenericRepository.GetListAsync<TEntity>(t => !t.Deleted);
+            return await GenericRepository.GetListAsync<TEntity>(t => !t.Deleted, includeProperties);
         }
 
-        protected async Task<TEntity> GetById<TEntity>(Guid id) where TEntity : BaseEntity
+        protected async Task<TEntity> GetById<TEntity>(Guid id, string includeProperties = "") where TEntity : BaseEntity
         {
-            return await GenericRepository.GetByIdAsync<TEntity>(id);
+            return await GenericRepository.GetByIdAsync<TEntity>(id, includeProperties);
         }
     }
 }

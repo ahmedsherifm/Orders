@@ -7,6 +7,5 @@ namespace Orders.API.Services.Interfaces
     public interface IRecordSubjectService
     {
         Task<RecordSubject> GetRecordSubjectById(Guid id);
-        Task AddRecordSubject(RecordSubject recordSubject);
     }
 }

@@ -14,7 +14,6 @@ namespace Orders.API.Entities.Models
         public BaseEntity()
         {
             Id = Guid.NewGuid();
-            CreatedDate = UpdatedDate = DateTimeOffset.Now;
         }
     }
 }
