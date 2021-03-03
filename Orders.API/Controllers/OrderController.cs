@@ -42,6 +42,22 @@ namespace Orders.API.Controllers
             }
         }
 
+        // GET api/<controller>/number/5
+        [HttpGet("number/{orderNumber}")]
+        public async Task<IActionResult> Get(int orderNumber)
+        {
+            try
+            {
+                var order = await _orderService.GetOrderByNumber(orderNumber);
+                return Ok(order);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return NotFound();
+            }
+        }
+
         // POST api/<controller>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]OrderModel order)
