@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Orders.API.Entities.Models;
 
 namespace Orders.API.Entities.Migrations
 {
     [DbContext(typeof(OrdersContext))]
-    partial class OrdersContextModelSnapshot : ModelSnapshot
+    [Migration("20210307123314_UpdateEnums")]
+    partial class UpdateEnums
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,8 +63,8 @@ namespace Orders.API.Entities.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RecordType")
-                        .HasColumnType("int");
+                    b.Property<byte>("RecordType")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("ScopeDetails")
                         .HasColumnType("nvarchar(max)");
@@ -131,8 +133,8 @@ namespace Orders.API.Entities.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CaseType")
-                        .HasColumnType("int");
+                    b.Property<byte>("CaseType")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -185,7 +187,7 @@ namespace Orders.API.Entities.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("TrialDate")
+                    b.Property<DateTime>("TrialDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTimeOffset>("UpdatedDate")

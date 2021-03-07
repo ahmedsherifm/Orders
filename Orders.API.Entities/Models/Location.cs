@@ -11,6 +11,7 @@ namespace Orders.API.Entities.Models
     {
         [Required]
         public string Facility { get; set; }
+        public string Department { get; set; }
         [Required]
         public string StreetAddress { get; set; }
         [Required]
@@ -22,10 +23,8 @@ namespace Orders.API.Entities.Models
         [Required]
         public string PhoneNumber { get; set; }
         public string FaxNumber { get; set; }
-        [Required]
-        public DateTime From { get; set; }
-        [Required]
-        public DateTime To { get; set; }
+        public DateTime? FromDate { get; set; }
+        public DateTime? ToDate { get; set; }
         public bool IsToPresent { get; set; }
         public bool AnyAndAllRecords { get; set; }
         [Required]

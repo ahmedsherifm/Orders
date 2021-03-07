@@ -16,9 +16,7 @@ namespace Orders.API.Entities.Models
         public string MiddleName { get; set; }
         [Required]
         public string LastName { get; set; }
-        [Required]
-        public DateTime DOB { get; set; }
-        [Required]
+        public DateTime? DOB { get; set; }
         public string SSN { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
@@ -28,7 +26,7 @@ namespace Orders.API.Entities.Models
         public string PlaintiffName { get; set; }
         public string DefendantName { get; set; }
         public string Remarks { get; set; }
-        public DateTime TrialDate { get; set; }
+        public DateTime? TrialDate { get; set; }
         public bool IsRushed { get; set; }
         public bool IsBusinessRequest { get; set; }
         public bool IsClientRequest { get; set; }

@@ -5,16 +5,16 @@ namespace Orders.API.Core
     public enum CaseTypes
     {
         [Description("Arbitration")]
-        Arbitration,
+        Arbitration = 0,
         [Description("Civil")]
-        Civil,
+        Civil = 1,
         [Description("Federal")]
-        Federal,
+        Federal = 2,
         [Description("Pre-Litigated Matter")]
-        PreLitigatedMatter,
+        PreLitigatedMatter = 3,
         [Description("Probate")]
-        Probate,
+        Probate = 4,
         [Description("Workers' Comp")]
-        WorkersComp
+        WorkersComp = 5
     }
 }

@@ -5,20 +5,20 @@ namespace Orders.API.Core
     public enum RecordTypes
     {
         [Description("Academic Records")]
-        AcademicRecords,
+        AcademicRecords = 0,
         [Description("Ambulance Records")]
-        AmbulanceRecords,
+        AmbulanceRecords = 1,
         [Description("Bank Records")]
-        BankRecords,
+        BankRecords = 2,
         [Description("Business Records")]
-        BusinessRecords,
+        BusinessRecords = 3,
         [Description("Claims Records")]
-        ClaimsRecords,
+        ClaimsRecords = 4,
         [Description("Dental Records")]
-        DentalRecords,
+        DentalRecords = 5,
         [Description("Insurance Records")]
-        InsuranceRecords,
+        InsuranceRecords = 6,
         [Description("Medical Records")]
-        MedicalRecords
+        MedicalRecords = 7
     }
 }
