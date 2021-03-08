@@ -36,6 +36,7 @@ namespace Orders.API.Services.Services
         public async Task AddNewOrder(OrderModel orderModel)
         {
             var order = MapperService.Map<OrderModel, Order>(orderModel);
+            order.OrderDate = DateTime.UtcNow;
             GenericRepository.Add(order);
             await GenericRepository.SaveAsync();
         }
