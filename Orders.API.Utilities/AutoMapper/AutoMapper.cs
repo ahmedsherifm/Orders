@@ -4,6 +4,7 @@ using System.Text;
 using AutoMapper;
 using Orders.API.Entities.Models;
 using Orders.API.Models;
+using Orders.API.Models.Models;
 
 namespace Orders.API.Utilities.AutoMapper
 {
@@ -14,6 +15,7 @@ namespace Orders.API.Utilities.AutoMapper
             CreateMap<Order, OrderModel>().ReverseMap();
             CreateMap<Location, LocationModel>().ReverseMap();
             CreateMap<RecordSubject, RecordSubjectModel>().ReverseMap();
+            CreateMap<ApplicationUser, UserModel>().ReverseMap();
         }
     }
 }

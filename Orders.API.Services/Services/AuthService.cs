@@ -9,20 +9,23 @@ using Microsoft.IdentityModel.Tokens;
 using Orders.API.Entities.Models;
 using Microsoft.Extensions.Configuration;
 using Orders.API.Core;
+using Orders.API.DAL.Interfaces;
+using Orders.API.Models.Models;
 using Orders.API.Models.RequestModels;
 using Orders.API.Models.ResponseModels;
 using Orders.API.Services.Interfaces;
+using Orders.API.Utilities.AutoMapper;
 
 namespace Orders.API.Services.Services
 {
-    public class AuthService: IAuthService
+    public class AuthService: BaseService, IAuthService
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
 
         public AuthService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,
-            IConfiguration configuration)
+            IConfiguration configuration, IGenericRepository genericRepository, IMapperService mapperService): base(genericRepository, mapperService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -118,10 +121,11 @@ namespace Orders.API.Services.Services
                     Status = "Success",
                     Message = "User Logged In Successfully",
                     Token = new JwtSecurityTokenHandler().WriteToken(token),
-                    Expiration = token.ValidTo
+                    Expiration = token.ValidTo,
+                    User = MapperService.Map<ApplicationUser, UserModel>(user)
                 };
             }
-            return new LoginResponse{Status = "Error"};
+            return new LoginResponse{Status = "Error", Message = "Invalid Username or Password" };
         }
     }
 }

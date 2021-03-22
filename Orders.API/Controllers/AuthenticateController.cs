@@ -35,10 +35,9 @@ namespace Orders.API.Controllers
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
             var response = await _authService.LoginUser(model);
-            if(string.Equals(response.Status, "Error", StringComparison.OrdinalIgnoreCase))
-                return Unauthorized();
-            
-            return Ok(response);
+            return string.Equals(response.Status, "Error", StringComparison.OrdinalIgnoreCase) ?
+                StatusCode(StatusCodes.Status401Unauthorized, response) :
+                Ok(response);
         }
 
         [HttpPost]
